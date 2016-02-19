@@ -21,6 +21,7 @@
                 {% if session['logged_in'] %} 
                 <li><a href="{{url_for('logout')}}" role="presentation">Log out</a></li>
                 <li><a href="{{url_for('add_entry')}}" role="presentation">Post</a></li>
+                <li><a href="{{url_for('backup')}}" role="presentation">Backup</a></li>
                 {% else %}
                 <li><a href="{{url_for('login')}}" role="presentation">Log in</a></li>
                 {% endif %}

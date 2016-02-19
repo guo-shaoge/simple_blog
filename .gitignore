@@ -1,5 +1,5 @@
 *~
 *swp
 venv/*
-backup_file/*
-!backup_diary.y
+*pyc
+backup_file/real_files/*

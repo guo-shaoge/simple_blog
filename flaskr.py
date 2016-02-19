@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, g, request, flash, \
         session, url_for
 from contextlib import closing
 from datetime import datetime
+from backup_file import backup_diary
 import sqlite3
 
 SECRET_KEY = 's simple key'
@@ -33,6 +34,7 @@ def teardown_request(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
+
 @app.route('/')
 def show_entries():
 	if not session.get('logged_in'):
@@ -40,6 +42,19 @@ def show_entries():
 	cur = g.db.execute('select title, text, time from entries order by id desc')
 	entries = [dict(title=row[0], text=row[1], time=row[2]) for row in cur.fetchall()]
 	return render_template('show_entries.html', entries=entries)
+
+@app.route('/backup')
+def backup():
+	backup_diary.backup(g.db)
+	flash('All entries have been backed up')
+	return redirect(url_for('show_entries'))
+
+@app.route('/del_entry/<time>')
+def del_entry(time):
+	g.db.execute('delete from entries where time=?', (time, ))
+	g.db.commit()
+	flash('Post has been deleted') 
+	return redirect(url_for('show_entries'))
 
 @app.route('/add_entry', methods=['POST', 'GET'])
 def add_entry():
