@@ -8,8 +8,8 @@ import sqlite3
 SECRET_KEY = 's simple key'
 DATABASE = 'flaskr.db'
 DEBUG = True
-USERNAME = '1'
-PASSWORD = '1'
+USERNAME = 'simple name'
+PASSWORD = 'simple password'
 
 app = Flask(__name__)
 

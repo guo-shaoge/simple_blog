@@ -3,3 +3,4 @@
 venv/*
 *pyc
 backup_file/real_files/*
+flaskr.db
