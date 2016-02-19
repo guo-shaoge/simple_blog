@@ -4,7 +4,9 @@
 <div class="col-xs-8 col-xs-offset-2">
     {% if error %} <p class="error"><strong>Error:</strong>{{error}} {% endif %}
 
-    <form method="post" action="{{url_for('login')}}">
+    <form method="post" class="form-signin" action="{{url_for('login')}}">
+		<h3 class="form-signin-heading">Sign in</h3>
+		<hr>
         <div class="form-group"> 
             <label for="username">Username</label>
             <input type="text" class="form-control" name="username" placeholder="username">
@@ -13,7 +15,8 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" placeholder="password">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+		<hr>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 {% endblock %}
