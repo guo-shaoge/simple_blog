@@ -33,12 +33,13 @@ def teardown_request(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
-
 @app.route('/')
 def show_entries():
-    cur = g.db.execute('select title, text, time from entries order by id desc')
-    entries = [dict(title=row[0], text=row[1], time=row[2]) for row in cur.fetchall()]
-    return render_template('show_entries.html', entries=entries)
+	if not session.get('logged_in'):
+		return redirect(url_for('login'))
+	cur = g.db.execute('select title, text, time from entries order by id desc')
+	entries = [dict(title=row[0], text=row[1], time=row[2]) for row in cur.fetchall()]
+	return render_template('show_entries.html', entries=entries)
 
 @app.route('/add_entry', methods=['POST', 'GET'])
 def add_entry():

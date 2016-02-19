@@ -1,2 +1,5 @@
 *~
 *swp
+venv/*
+backup_file/*
+!backup_diary.y
