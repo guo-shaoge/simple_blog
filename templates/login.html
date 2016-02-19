@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="col-xs-8 col-xs-offset-2">
+    {% if error %} <p class="error"><strong>Error:</strong>{{error}} {% endif %}
+
+    <form method="post" action="{{url_for('login')}}">
+        <div class="form-group"> 
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="username">
+        </div>
+        <div class="form-group"> 
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+{% endblock %}

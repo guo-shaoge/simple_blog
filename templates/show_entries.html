@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="col-xs-8 col-xs-offset-2">
+    {% for entry in entries %}
+        <div class="page-header">
+            <h3>{{ entry['title'] }}</h3>
+            {{ entry['time'] }}
+        </div>
+        <br>
+            {{ entry['text'] }}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <link href="../static/bootstrap/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link href="../static/flaskr.css" rel="stylesheet">
+</head>
+
+<title>
+    Flaskr
+</title>
+
+<body>
+
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                {% if session['logged_in'] %} 
+                <li><a href="{{url_for('logout')}}" role="presentation">Log out</a></li>
+                <li><a href="{{url_for('add_entry')}}" role="presentation">Post</a></li>
+                {% else %}
+                <li><a href="{{url_for('login')}}" role="presentation">Log in</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <a href="{{url_for('show_entries')}}">
+            <h3 class="text-muted">Flaskr</h3></a>
+    </div>
+    <div class="col-xs-8 col-xs-offset-2">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span></button>
+                    {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+        {% block page_content %} {% endblock %}
+</div><!--container-->
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
